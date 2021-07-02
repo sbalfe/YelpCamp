@@ -1,0 +1,15 @@
+<!-- bootstrap alert when making a new campground if there is a res local variable stored then display it -->
+<% if(success.length){ %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%=success%>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> <!--add a quit button to the flash-->
+    </div>
+<%}%>
+
+<% if(error.length){ %>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%=error%>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <!--add a quit button to the flash-->
+</div>
+<%}%>

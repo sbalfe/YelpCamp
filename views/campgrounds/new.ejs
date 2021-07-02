@@ -1,0 +1,93 @@
+
+<% layout('layouts/boilerplate') -%>
+
+<div class="row">
+    <h1 class="text-center">New Campground</h1>
+    <!-- have 3 columns of space on either side of the column taking up half the space in order to centre it -->
+    <div class="col-md-6 offset-md-3">
+
+            <!-- novalidate toggles off the required input validation -->
+            <!-- https://stackoverflow.com/questions/4526273/what-does-enctype-multipart-form-data-mean -->
+             <form action="/campgrounds" method="POST" novalidate class = "validatedForm" enctype = "multipart/form-data">
+                 <div class = "mb-3">
+
+                     <!-- form label and control style inputs to look nice -->
+
+                     <label for="title" class = "form-label">Title</label>
+                     <!-- use the campground[array] item to group the data under a campground title, nested literal it comes out as -->
+
+                     <!-- add required in order to make it non empty -->
+                     <input type="text" class = "form-control" name="campground[title]" id="title" required>
+                     <div class="valid-feedback">
+                         Looks Good!
+                     </div>
+                 </div>
+                 <div class = "mb-3">
+                     <label for="location" class="form-label">Location</label>
+                     <input type="text" name="campground[location]" class="form-control" id="location" required>
+                     <div class="valid-feedback">
+                         Looks Good!
+                     </div>
+                 </div>
+                 <!--<input type = "file" name = "images" id="image" multiple>-->
+                 <!-- TODO ADD PROPER MULTIPLE IMAGE ADDITION -->
+                 <div class="mb-3">
+                     <label for="imageSelect" class="form-label custom-file-label">Select Images </label>
+                     <input class="form-control custom-file" type="file" id="imageSelect" multiple>
+                 </div>
+
+                 <div class="mb-3">
+                      <label for="price" class="form-label">Price</label>
+                      <div class="input-group">
+                           <span class="input-group-text" id="price-label">£</span>
+                           <input type="text" class="form-control" name = "campground[price]" placeholder="0.0" aria-label="price-label"
+                               aria-describedby="price-label" required>
+                            <div class="valid-feedback">
+                                Looks Good!
+                            </div>
+                      </div>
+                  </div>
+                  <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea type="text" name="campground[description]" class="form-control" id="description" required></textarea>
+                        <div class="valid-feedback">
+                            Looks Good!
+                        </div>
+                  </div>
+                 <div class="mb-3">
+                    <button class="btn btn-success "> Add Campground </button>
+                 </div>
+
+             </form>
+             <a href="/campgrounds">Cancel</a>
+             <script src="" async defer></script>
+        </div>
+    </div>
+</div>
+
+<script>
+        (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.validatedForm')
+
+        // Loop over them and prevent submission
+
+        /*array . from creates new array copy from the parameter forms array passed in*/
+        Array.from(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+
+                /* For an invalid form , you must stop default action and stop propogation which prevents further events being triggered.*/
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+            /*add the boostrap validation green if its all good*/
+            form.classList.add('was-validated')
+            }, false)
+        })
+        })()
+</script>
